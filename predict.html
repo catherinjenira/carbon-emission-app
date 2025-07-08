@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carbon Emission Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2eff38, #388e3c);
+      color: white;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background: rgba(0,0,0,0.1);
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ffffff, #c8e6c9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #dcedc8;
+    }
+
+    .country-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+    }
+
+    .country-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: none;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .country-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .country-btn img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .graph-container {
+      margin: 40px auto;
+      text-align: center;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    .graph-container img {
+      width: 100%;
+      border: 2px solid #004d40;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .graph-container h2 {
+      margin-bottom: 20px;
+      color: #004d40;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">🌱Carbon Insights</div>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="predict.html">Predict Future</a></li>
+      <li><a href="cbot.html">Cbot</a></li>
+      <li><a href="insights.html">Insights</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="country-container">
+    <button class="country-btn" onclick="showGraph('india')">
+      <img src="https://flagcdn.com/w320/in.png" alt="India" />
+      India
+    </button>
+    <button class="country-btn" onclick="showGraph('china')">
+      <img src="https://flagcdn.com/w320/cn.png" alt="China" />
+      China
+    </button>
+    <button class="country-btn" onclick="showGraph('usa')">
+      <img src="https://flagcdn.com/w320/us.png" alt="USA" />
+      USA
+    </button>
+    <button class="country-btn" onclick="showGraph('germany')">
+      <img src="https://flagcdn.com/w320/de.png" alt="Germany" />
+      Germany
+    </button>
+    <button class="country-btn" onclick="showGraph('brazil')">
+      <img src="https://flagcdn.com/w320/br.png" alt="Brazil" />
+      Brazil
+    </button>
+    <button class="country-btn" onclick="showGraph('australia')">
+      <img src="https://flagcdn.com/w320/au.png" alt="Australia" />
+      Australia
+    </button>
+  </div>
+
+  <div class="graph-container" id="graphContainer">
+    <p>Please select a country to display its emission graph.</p>
+  </div>
+
+  <script>
+    function showGraph(country) {
+      const graphContainer = document.getElementById("graphContainer");
+
+      // Example graph images (replace with your actual graph URLs)
+      const graphs = {
+        india: "https://via.placeholder.com/800x500.png?text=India+Emission+Graph",
+        china: "https://via.placeholder.com/800x500.png?text=China+Emission+Graph",
+        usa: "https://via.placeholder.com/800x500.png?text=USA+Emission+Graph",
+        germany: "https://via.placeholder.com/800x500.png?text=Germany+Emission+Graph",
+        brazil: "https://via.placeholder.com/800x500.png?text=Brazil+Emission+Graph",
+        australia: "https://via.placeholder.com/800x500.png?text=Australia+Emission+Graph"
+      };
+
+      if(graphs[country]) {
+        graphContainer.innerHTML = `
+          <h2>${country.charAt(0).toUpperCase() + country.slice(1)} Carbon Emission Graph</h2>
+          <img src="${graphs[country]}" alt="${country} graph" />
+        `;
+      } else {
+        graphContainer.innerHTML = "<p>Graph not available for the selected country.</p>";
+      }
+    }
+  </script>
+
+</body>
+</html>
